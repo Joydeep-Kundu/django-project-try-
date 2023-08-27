@@ -13,8 +13,9 @@ def home_view(request):
     name='rn'
     number=randint(1,3)
     article_obj=Article.objects.get(id=number)
-    # my_list=[1021=,13,342,1331,213]
+    article_queryset=Article.objects.all()
     context={
+        "object_list":article_queryset,
         "title": article_obj.title,
         "id":article_obj.id,
         "content":article_obj.content
