@@ -2,6 +2,7 @@
 to render html web page
 """
 from django.http import HttpResponse
+from django.template.loader import render_to_string,get_template
 from articles.models import Article
 from random import randint
 def home_view(request):
@@ -12,11 +13,18 @@ def home_view(request):
     name='rn'
     number=randint(1,3)
     article_obj=Article.objects.get(id=number)
-    h1_string=f"""
-    <h1>{article_obj.title} ({article_obj.id})</h1>
-    """
-    p_string=f"""
-    <p>{article_obj.content}
-    """
-    HTML_STRING=h1_string+p_string
+    # my_list=[1021=,13,342,1331,213]
+    context={
+        "title": article_obj.title,
+        "id":article_obj.id,
+        "content":article_obj.content
+    }
+
+    #django templates
+    HTML_STRING=render_to_string("home-view.html",
+    context=context)
+    # HTML_STRING="""
+    # <h1>{title} ({id})</h1>
+    # <p>{content}</p>
+    # """.format(**context)
     return HttpResponse(HTML_STRING)
