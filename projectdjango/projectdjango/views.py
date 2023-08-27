@@ -11,7 +11,7 @@ def home_view(request):
     take in a request (Django sends request)
     Return HTM as a response (we pic to return the response)
     """
-    number=randint(1,3)
+    number=randint(1,4)
     article_obj=Article.objects.get(id=number)
     article_queryset=Article.objects.all()
     context={
