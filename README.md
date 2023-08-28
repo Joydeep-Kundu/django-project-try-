@@ -1,2 +1,2 @@
 # django-project-try-
-learning django
+learning django 3.2
